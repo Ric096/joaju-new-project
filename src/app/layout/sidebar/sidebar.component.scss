@@ -1,0 +1,32 @@
+.sidebar{
+    width: 33%;
+    top: 49px;
+    z-index:0
+}
+
+.chat-btn {
+    // flex-grow: 1;
+    // border-radius: 4px;
+    background-color: #e7cbec;
+    color: purple;
+    font-size: 14px;
+    font-weight: 500;
+
+    // padding: 2px 0 ;
+    transition: opacity 200ms ;
+    opacity: 1;
+}
+
+.chat-btn:hover {
+    opacity: 0.7;
+    // color: rgb(102, 0, 102);
+}
+
+.chat-btn:focus {
+    color: white;
+    background-color: purple;
+}
+
+.chat-btn:focus:hover {
+    opacity: initial;
+}

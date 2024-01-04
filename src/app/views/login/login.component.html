@@ -1,0 +1,30 @@
+<main>
+    
+    <section class="login-container">
+    
+        <h2 class="text-3xl text-center p-7 italic">Joaju Multiagente</h2>
+        <h3 class="text-xl text-center ">Iniciar Sesión</h3>
+    
+        <section class="flex flex-col gap-6 p-4 mt-8 items-center" >
+    
+            <label >Usuario: 
+             <input type="text" pInputText [(ngModel)]="user" class="h-9 border-2 p-2.5 rounded-lg block w-80 mt-2"  placeholder="Pepito123" >
+            </label>
+        
+            <label for="">Contraseña:
+             <input type="password" class="h-9 border-2 p-2.5 rounded-lg block w-80 mt-2" pInputText placeholder="***" [(ngModel)]="password">
+            </label>
+        
+            <button pButton pRipple class="send-info w-80" (click)="logUser()">Ingresar</button>
+    
+            <div class="joaju-logo flex items-center">
+                <!-- <span class="span1">J</span><span class="span2">J</span> -->
+                <img class="h-16 w-16 mx-auto" src="assets/images/joaju.png" alt="Joaju logo">
+            </div>
+    
+        </section>
+    
+    
+    
+    </section>
+</main>

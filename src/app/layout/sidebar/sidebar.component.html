@@ -1,0 +1,99 @@
+<aside id="sidebar-multi-level-sidebar"
+  class="sidebar fixed left-0 z-40 h-full bg-purple-400 transition-transform -translate-x-full sm:translate-x-0"
+  aria-label="Sidebar">
+  <div class="h-full px-3 py-5 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+
+    <!-- Navagar entre los chats -->
+    <div class="flex flex-wrap rounded-md  justify-center mb-4">
+      <button
+        class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium text-purple border border-gray-200 rounded-s-lg  focus:z-10 focus:ring-2 ring-purple-400">
+        <svg class="w-[18px] h-[18px] dark:text-white" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Abiertos
+      </button>
+
+      <button
+        class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium border-t border-b border-gray-200  focus:z-10 focus:ring-2 focus:ring-purple-400">
+        <svg class="w-[16px] h-[16px] dark:text-white" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Cerrados
+      </button>
+
+      <button
+        class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium border border-gray-200 rounded-e-lg focus:z-10 focus:ring-2 focus:ring-purple-400">
+        <svg class="w-[16px] h-[16px] dark:text-white" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"
+            d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Pendientes
+      </button>
+
+    </div>
+
+    <!-- Barra de busqueda -->
+    <form>
+      <div class="flex">
+        <button id="dropdown-button" data-dropdown-toggle="dropdown"
+          class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-lightPurple hover:text-fuchsia-900  focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+          type="button">Todos <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 1 4 4 4-4" />
+          </svg></button>
+
+        <!-- En un futuro cambiar por un @for para cada categoria que tengamos  -->
+
+        <div id="dropdown"
+          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+            <li>
+              <button type="button"
+                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Todos</button>
+            </li>
+            <li>
+              <button type="button"
+                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mi
+                Bandeja</button>
+            </li>
+            <li>
+              <button type="button"
+                class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sin
+                Asignación</button>
+            </li>
+          </ul>
+        </div>
+        <div class="relative w-full">
+          <input type="search" id="search-dropdown"
+            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500 hover:border-purple-500"
+            placeholder="Buscar en el chat" required>
+        </div>
+      </div>
+    </form>
+
+    <section class="flex items-center justify-between w-5/6 mx-auto my-4">
+      <p class="text-gray-500">Cantidad de registros: 1</p>
+      
+      <div class="flex gap-2">
+
+        <article class="w-8 h-8 border-2 border-purple-600 rounded-full flex items-center justify-center cursor-pointer">
+          <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" fill="none" viewBox="0 0 18 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 1v5h-5M2 19v-5h5m10-4a8 8 0 0 1-14.947 3.97M1 10a8 8 0 0 1 14.947-3.97"/>
+          </svg>
+        </article>
+        <article class="w-8 h-8  border-2 border-purple-600 rounded-full flex items-center justify-center cursor-pointer">
+          <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" fill="none" viewBox="0 0 20 18">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.133 2.6 5.856 6.9L8 14l4 3 .011-7.5 5.856-6.9a1 1 0 0 0-.804-1.6H2.937a1 1 0 0 0-.804 1.6Z"/>
+          </svg>
+        </article>
+      </div>
+    </section>
+
+  </div>
+  <article class="bg-blue-600" >
+    <app-chat-preview></app-chat-preview>
+  </article>
+
+</aside>

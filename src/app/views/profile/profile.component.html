@@ -1,0 +1,124 @@
+@defer (on viewport) {
+<section class="w-screen h-screen bg-otherPurple m-0 pt-3 overflow-y-scroll opacity-80">
+   <section class="profile-container bg-white">
+
+      <button class="button" (click)="closeModal()">
+         <span class="X"></span>
+         <span class="Y"></span>
+         <div class="close">Close</div>
+      </button>
+
+      <div class="text-center">
+         <div class="border-circle text-7xl">
+            <!-- Descomentar la linea de abajo -->
+            @if(userInfo.score < 3 ){ 🙁 } @else if(userInfo.score> 3){ 😄 }
+               @else {🙂}
+         </div>
+      </div>
+
+      <h2 class="profile-title">Bienvenido!
+         <span class="text-purple-500 italic">{{userInfo.name}}</span>
+      </h2>
+
+      <p class="profile-info">
+         Este es tu perfil, aquí puedes modificar tus datos, realizar cambios de contraseña y cerrar tu sesión activa.
+      </p>
+
+      <h3 class="text-lg text-surface900 font-bold text-center">Tu Calificación es:
+
+         <!-- Agregar nuevamente la condicion del ngClass para mostrar los estilos -->
+         <span [ngClass]="{
+            'red':userInfo.score < 3,
+            'yellow': userInfo.score === 3,
+            'green': userInfo.score > 3
+            }" >
+            {{userInfo.score ?? 0 }}
+         </span>
+      </h3>
+
+      <section class="flex items-center w-full gap-5 justify-center my-5">
+         <!-- Cambiar Datos -->
+         <button class="action-btn" [ngClass]="showUserData ? 'active' : 'none'" (click)="showUserInfo()">
+            <span class="label-span">Editar</span>
+
+            <svg class="w-[26px] h-[26px] dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 20 18">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M4.109 17H1v-2a4 4 0 0 1 4-4h.87M10 4.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm7.95 2.55a2 2 0 0 1 0 2.829l-6.364 6.364-3.536.707.707-3.536 6.364-6.364a2 2 0 0 1 2.829 0Z" />
+            </svg>
+         </button>
+         <!-- Cambiar Contraseña -->
+         <button class="action-btn" (click)="changePassword()">
+            <span class="label-span">Cambiar Contraseña</span>
+            <svg class="w-[26px] h-[26px] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               fill="none" viewBox="0 0 16 20">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M11.5 8V4.5a3.5 3.5 0 1 0-7 0V8M8 12v3M2 8h12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
+            </svg>
+         </button>
+         <!-- Preguntas Frecuentes -->
+         <button class="action-btn" [ngClass]="showMoreInfo ? 'active' : 'none'" (click)="moreInfo()">
+            <span class="label-span">Prguntas Frecuentes</span>
+
+            <svg class="w-[26px] h-[26px] text-gray-800 dark:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+         </button>
+         <!-- Cerrar Sesión
+         <button class="action-btn" (click)="logOut()">
+            <span class="label-span">Cerrar Sesión</span>
+
+            <svg width="26" height="26" viewBox="0 0 20 20">
+               <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                  <path
+                     d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" />
+                  <path
+                     d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" />
+               </g>
+            </svg>
+         </button> -->
+
+      </section>
+
+
+      @if(showUserData) {
+
+      <form [formGroup]="form" class="form-container" (ngSubmit)="onSubmit()">
+
+         <article class="flex flex-col ml-10">
+            <label>Nombre:</label>
+            <input type="text" pInputText class="w-40 rounded-lg lg:w-96" formControlName="name" placeholder='Cosme'>
+         </article>
+
+         <!-- <article class="flex flex-column">
+                   <label>Nombre:</label>
+                   <input type="text" pInputText class="w-9" formControlName="name" value={{userInfo[0].name}}>
+                </article> -->
+
+         <article class="flex flex-col ml-8">
+            <label class="label">Apellido:</label>
+            <input type="text" pInputText class="w-40 rounded-lg lg:w-96" formControlName="lastName">
+         </article>
+
+         <article class="flex flex-col ml-10">
+            <label>Usuario:</label>
+            <input type="text" pInputText class="w-40 rounded-lg lg:w-96" formControlName="username" placeholder='User123'>
+         </article>
+
+         <article class="flex flex-col ml-8">
+            <label class="label">Email:</label>
+            <input type="text" pInputText class="w-40 rounded-lg lg:w-96" formControlName="email" placeholder=user@gmail.com>
+         </article>
+
+         <button pButton pRipple class="submit-btn">Actualizar</button>
+
+      </form>
+      }
+
+   </section>
+</section>
+
+} @placeholder {
+<div></div>
+}
