@@ -1,33 +1,120 @@
-<header class="shadow-md z-10 px-4">
+<header class="shadow-md z-10 px-4 ">
    <nav class="bg-white border-gray-200 dark:bg-gray-900">
-      <div class="flex mx-4 md:justify-between items-center justify-between mx-auto p-2 md:p-2">
-         <img src="/assets/images/joaju.png" alt="Joaju Multiagente logo" class="w-8 h-8"/>
-         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Joaju Multiagente</span>
-         <button data-collapse-toggle="navbar-default" type="button"
-            class="inline-flex items-center w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      <div class="flex mx-4 items-center justify-between mx-auto p-2 ">
+         <article class="flex gap-3 md:justify-center">
+            <img src="/assets/images/joaju.png" alt="Joaju Multiagente logo" class="w-8 h-8" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Joaju Multiagente</span>
+         </article>
+
+
+         <!-- Popover click prueba -->
+         <button data-popover-target="popover-click" data-popover-trigger="click" type="button"
+            class="flex items-center w-8 h-8 justify-center text-sm text-gray-500 lg:hidden rounded-lg hover:bg-gray-100 hover:text-purple-400 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
+            <svg class="w-6 h-6" aria-hidden="true" fill="none" viewBox="0 0 17 14">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15" />
+            </svg> 
+         </button>
+
+         <div data-popover id="popover-click" role="tooltip"
+            class="absolute z-10 invisible w-60 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            <div
+               class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+               <h3 class="font-semibold text-gray-900 dark:text-white italic text-purple-700">Navegación</h3>
+            </div>
+            <div class="px-3 py-2">
+               <ul class="flex flex-col"> 
+                  <!-- Perfil component -->
+                  <li class="border-b p-2">
+                     <button class="flex py-2 px-3 rounded md:bg-transparent md:p-0 hover:text-purple-800"
+                        (click)="goToProfile()">
+                        <svg width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                           <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                         </svg>
+                        <p class="font-medium text-gray-500 text-md ml-4 hover:text-purple-500"> 
+                           PERFIL
+                        </p> 
+                     </button>
+                  </li>
+                  <li class="border-b p-2">
+                     <button
+                        class="block py-2 px-3 border-2 rounded md:border-0 md:hover:text-purple-500 md:p-0  focus:text-purple-600 font-medium text-gray-500 text-md hover:text-purple-500">
+                        DESCONECTADO
+                     </button>
+                  </li> 
+                  <!-- Componente de supervisor -->
+                  <li class="border-b p-2">
+                     <button
+                     class="block py-2 flex px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0 focus:text-purple-600"
+                     (click)="goToSupervisor()">
+                     <svg  width="20" height="20" fill="currentColor" class="bi bi-headset" viewBox="0 0 16 16">
+                        <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5"/>
+                      </svg>
+                        <p class="font-medium text-gray-500 text-md ml-4 hover:text-purple-500"> 
+                        SUPERVISOR
+                        </p>
+                     </button>   
+                  </li>
+                  <!-- Componente de consumo -->
+                  <li class="border-b p-2">
+                     <button
+                     class="block flex py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0 focus:text-purple-600">
+                     <svg width="20" height="20" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                      </svg>
+                     <p class="font-medium text-gray-500 text-md ml-4 hover:text-purple-500"> 
+                     CONSUMO
+                     </p>
+                     </button>   
+                  </li>
+                  <li class="border-b p-2">
+                     <button
+                     class="flex block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-purple-500 md:p-0 focus:text-purple-600"(click)="userLogOut()">
+                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                      </svg>
+                        <p class="font-medium text-gray-500 text-md ml-4 hover:text-purple-500"> 
+                        CERRAR SESIÓN
+                        </p>
+                     </button>   
+                  </li>
+               </ul>
+            </div>
+            <div data-popper-arrow></div>
+         </div>
+
+         <!-- Menu hamburguesa -->
+         <!-- <button data-collapse-toggle="navbar-default" type="button"
+            class="flex items-center w-8 h-8 justify-center text-sm text-gray-500 lg:hidden rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default" aria-expanded="false">
             <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 17 14">
                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M1 1h15M1 7h15M1 13h15" />
             </svg>
-         </button>
-         <div class="menu-hidden hidden w-2/4 m md:block md:w-auto" id="navbar-default">
+         </button> -->
+         <div class="menu-hidden hidden w-2/4 m lg:block flex flex-col lg:w-auto" id="navbar-default">
             <ul
-               class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+               class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 lg:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                <li>
-                  <button
-                     class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500 focus:text-purple-600"
+                  <!-- Profile component -->
+                  <button class="block py-2 px-3 text-gray-900 rounded md:bg-transparent md:p-0 dark:text-white md:hover:text-purple-500  "
                      (click)="goToProfile()">
-                     <svg class="w-[25px] h-[25px] dark:text-white" fill="none" viewBox="0 0 14 18">
-                        <path stroke="green" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                           d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z" />
-                     </svg>
+                     <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                      </svg>
                   </button>
                </li>
                <li>
                   <button
-                     class="block py-2 px-3 border-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0  focus:text-purple-600">
+                     class="block py-2 px-3 border-2 text-gray-900 rounded md:border-0 md:hover:text-purple-500 md:p-0  focus:text-purple-600">
                      Desconectado
+                  </button>
+               </li>
+               <li>
+                  <button
+                     class="block py-2 px-3 border-2 text-gray-900 rounded md:border-0 md:hover:text-purple-500 md:p-0  focus:text-purple-600">
+                     <i class="bi bi-trash"></i>                 
                   </button>
                </li>
                <!-- componente del supervisor -->
@@ -69,9 +156,9 @@
                      class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-500 md:p-0 focus:text-purple-600"
                      (click)="userLogOut()">
                      <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                           d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5" />
-                     </svg>
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                      </svg>
                   </button>
                </li>
             </ul>

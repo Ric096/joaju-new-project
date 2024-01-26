@@ -9,8 +9,13 @@ const CHAT_URL = 'chat/Interaction';
 })
 export class ChatDataService  {
 
-  constructor() { 
+    // lUEGO CAMBIAR POR EL TYPE DE CHAT-DATA 
+  chatData:any
 
+  constructor() { 
+    // this.getQueue(  )
+    this.chatData = this.getChatData();
+    
   }
 
   getChatData() { 
@@ -20,18 +25,49 @@ export class ChatDataService  {
   }
 
 
-
-
   getPersonalInfo() {
-    let chatData = this.getChatData();
-    if(chatData !== ''){
-      const userInformation = chatData.map(chat => {
+    if(this.chatData !== ''){
+      const userInformation = this.chatData.map(chat => {
         return chat.channel;
         // chat.channel
       }) 
       return userInformation
     }
   }
+
+  getQueue() {
+    if(this.chatData !== '') {
+      const queueInformation = this.chatData.map( element => {
+        return element.queue
+      })
+      // console.log(queueInformation)
+      return queueInformation;
+    }
+  }
+
+  getProviders() { 
+
+    if(this.chatData !== '') {
+      const providersInfo = this.chatData.map( element => {
+        return element.provider
+      })
+      return providersInfo
+    }
+  }
+
+  getMessages() {
+
+    if(this.chatData !== '') {
+      const allMessages = this.chatData.map( element => {
+        return element.messages
+      })
+      return allMessages
+    }
+
+
+  }
+
+  
 
 
   

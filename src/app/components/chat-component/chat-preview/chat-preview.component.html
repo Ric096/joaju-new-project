@@ -1,6 +1,6 @@
 <div class="absolute top-48 flex flex-col overflow-y-scroll h-96 w-full mx-auto">
 
-   @for( chat of channel; track channel.index){
+   @for( data of chatData;track data.id; let i = $index){
 
    <section class="preview-chat mx-3">
       <!-- Seccion de nombre, icono, texto, datos, etc -->
@@ -17,14 +17,31 @@
                </g>
             </svg>
          </span>
-         <article class="w-2/3 ml-4">
-            <p class="">{{chat.name}}</p>
+         <article class="w-2/3 ml-4 flex flex-col">
+            <p class="">{{data.channel.name}}</p>
+            @for(message of data.messages; track message.id; let i = $index){
             <!-- aqui debe ir el mensaje de texto -->
-            <p>Bienvenido a la empresa tal...</p>
+            <!-- <p class="text-sm">{{data.messages[0].text}}</p> -->
+            <!-- @if() -->
+            @if((data.messages.length - i) === 1 ) {
+            <p>{{message.id}}</p>
+            }
+            <!-- <p>{{message.id}}</p> -->
 
+         }
          </article>
 
+         <article class="flex flex-col gap-2">
+            <!-- @for(message of data.messages; track messages.id; let i = $index){ -->
 
+            @if((data.messages[0].modified | date: 'dd/MM/YYYY') === today() ){
+            <p class="text-xs text-gray-700 font-medium">{{data.messages[0].modified | date:'HH:MM'}}</p>
+            <!-- <p></p> -->
+            } @else {
+            <p class="text-xs text-gray-700 font-medium">{{data.messages[0].modified | date:'dd/MM/YYYY'}}</p>
+            }
+            <p class="text-sm text-gray-700 font-medium">{{data.agent.user.username}}</p>
+         </article>
 
       </article>
 
@@ -32,7 +49,7 @@
 
       <article class="flex w-full h-full items-center pb-2">
 
-         @if(chat.channel === 'WA'){
+         @if(data.channel.channel === 'WA'){
          <span class="ml-6 mr-4">
             <svg width="22" height="22" viewBox="0 0 256 258">
                <defs>
@@ -55,8 +72,8 @@
 
          </span>
 
-         } @else if (chat.channel === 'IG') {
-         <span class="mr-4 ml-6" >
+         } @else if (data.channel.channel === 'IG') {
+         <span class="mr-4 ml-6">
             <svg width="22" height="22" viewBox="0 0 256 256">
                <g fill="none">
                   <rect width="256" height="256" fill="url(#IconifyId18ccbb06ccf6816859)" rx="60" />
@@ -83,11 +100,51 @@
             </svg>
          </span>
          }
-         <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">C Proveedor</span>
-         <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">Campaña</span>
-         
+
+         <span data-tooltip-target="tooltip-right" data-tooltip-placement="right"
+            class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+            @if(data.provider.name !== null){
+            {{data.provider.name}}
+            } @else {
+            Default
+            }
+         </span>
+         @if(data.queue === null) {
+         <span data-tooltip-target="tooltip-right" data-tooltip-placement="right"
+            class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">
+            Sin Campaña
+         </span>
+         <div id="tooltip-right" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Tooltip on right
+            <div class="tooltip-arrow" data-popper-arrow></div>
+         </div>
+         } @else {
+         <span data-tooltip-target="tooltip-right" data-tooltip-placement="right"
+            class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-300 border border-green-400">
+            {{data.queue.name}}
+         </span>
+         <div id="tooltip-right" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Tooltip on right
+            <div class="tooltip-arrow" data-popper-arrow></div>
+         </div>
+         }
+
          @if(isDemored){
-            <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">🕗</span>
+
+         <span
+            class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+            <svg width="16" height="16" viewBox="0 0 16 16">
+               <g fill="#000">
+                  <path
+                     d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483m.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501m-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432z" />
+                  <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z" />
+                  <path
+                     d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
+               </g>
+            </svg>
+         </span>
          }
       </article>
    </section>

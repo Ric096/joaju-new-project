@@ -5,7 +5,6 @@ import { JWT_OPTIONS } from '@auth0/angular-jwt'
 import { PasswordModule } from 'primeng/password'
 import { ReactiveFormsModule, FormBuilder, FormControl, FormsModule, FormGroup } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { UserDataService } from '../../services/user-data.service';
 import { Router } from '@angular/router';
 import { AlertsService } from '../../services/alerts.service';
  

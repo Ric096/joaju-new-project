@@ -34,7 +34,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.wss.createWebSocket();
-    this.setChatData();
+    // this.setChatData();
     this.chatData.getChatData();
   }
 
@@ -45,11 +45,11 @@ export class ChatComponent implements OnInit {
     this.wss.sendMessage(this.messages)
   }
 
-  async setChatData() {
-    const response = await axios.get(`${environments.api}/${CHAT_URL}/`);
-    let results = response.data.results
-    // console.log(results)
-    localStorage.setItem('chat-data',JSON.stringify(results))
-  }
+  // async setChatData() {
+  //   const response = await axios.get(`${environments.api}/${CHAT_URL}/`);
+  //   let results = response.data.results
+  //   console.log(results)
+  //   localStorage.setItem('chat-data',JSON.stringify(results))
+  // }
 
 }

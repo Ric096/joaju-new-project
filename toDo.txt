@@ -1,0 +1,19 @@
+
+
+- Crear interfaces para los tipos ✅
+
+- Implementar de una manera correcta el websocket 
+
+- Que la aplicación sea responsive ✅
+
+- Conectar de una mejor manera los componentes 
+
+- Ver error en el componente de supervisor (es problema de flowbite )
+
+- Ver componentes de mensajes
+
+- Arreglar componente de previsualizacion de chats ✅
+
+- Arreglar para visualizar el ultimo mensaje dentro de la previsualizacion del chat
+
+- Crear componente y funcionalidad de las campañas 

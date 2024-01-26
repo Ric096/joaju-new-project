@@ -1,7 +1,18 @@
-<app-navigation></app-navigation>
-<main class="h-4/5">
-    <app-sidebar></app-sidebar>
-    <router-outlet></router-outlet>
-</main>
+<main class="main-container dark:bg-neutral-900">
 
-<app-footer></app-footer>
+    <!-- <section class="app-navigation"> -->
+        <app-navigation></app-navigation>
+    <!-- </section> -->
+    <div class="h-4/5">        
+        <!-- <aside class="app-sidebar"> -->
+            <app-sidebar ></app-sidebar>
+        <!-- </aside> -->
+        <!-- <section class="app-content"> -->
+            <router-outlet ></router-outlet>
+        <!-- </section> -->
+        </div>
+    <!-- <article class="app-footer"> -->
+        <app-footer ></app-footer>
+    <!-- </article> -->
+
+    </main>
