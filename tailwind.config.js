@@ -13,9 +13,11 @@ export const theme = {
       surface900: '#212121',
     },
   },
+  // "darkMode": "media"
 };
 export const plugins = [
   require('flowbite/plugin'),
   // addDynamicIconSelectors(),
 ];
+
 

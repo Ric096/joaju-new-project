@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { DarkModeService } from './services/dark-mode.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,14 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 })
 export class AppComponent implements OnInit {
   title = 'joaju-new-project';
+  
+  isDarkMode:boolean
+
+  constructor() {}
 
   ngOnInit(): void {
     initFlowbite();
+
   }
+
 }

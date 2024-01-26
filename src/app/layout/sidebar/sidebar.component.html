@@ -1,11 +1,11 @@
 <aside id="sidebar-multi-level-sidebar"
-  class="sidebar fixed left-0 z-40 h-full bg-purple-400 transition-transform -translate-x-full sm:translate-x-0"
+  class="sidebar fixed left-0 z-40 h-full bg-purple-400 max-w-60 max-md transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidebar">
-  <div class="h-full px-3 py-5 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+  <div class="h-full px-3 py-5 overflow-y-auto bg-gray-50 dark:bg-gray-800 ">
 
     <!-- Navagar entre los chats -->
-    <div class="flex flex-wrap rounded-md  justify-center mb-4">
-      <button
+    <div class="lg:flex lg:flex-wrap lg:rounded-md lg:justify-center lg:mb-4 max-md md:hidden sm:hidden">
+      <button (click)="getChatStatus('A')"
         class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium text-purple border border-gray-200 rounded-s-lg  focus:z-10 focus:ring-2 ring-purple-400">
         <svg class="w-[18px] h-[18px] dark:text-white" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -14,7 +14,7 @@
         Abiertos
       </button>
 
-      <button
+      <button (click)="getChatStatus('C')"
         class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium border-t border-b border-gray-200  focus:z-10 focus:ring-2 focus:ring-purple-400">
         <svg class="w-[16px] h-[16px] dark:text-white" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -23,13 +23,43 @@
         Cerrados
       </button>
 
-      <button
+      <button (click)="getChatStatus('P')"
         class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium border border-gray-200 rounded-e-lg focus:z-10 focus:ring-2 focus:ring-purple-400">
         <svg class="w-[16px] h-[16px] dark:text-white" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"
             d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
         Pendientes
+      </button>
+
+    </div>
+ 
+    <div class="flex flex-wrap rounded-md justify-center mb-4 max-md lg:hidden xl:hidden 2xl:hidden">
+      <button (click)="getChatStatus('A')"
+        class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium text-purple border border-gray-200 rounded-s-lg  focus:z-10 focus:ring-2 ring-purple-400">
+        <svg class="w-[18px] h-[18px] dark:text-white" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m7 10 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Ab
+      </button>
+
+      <button (click)="getChatStatus('C')"
+        class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium border-t border-b border-gray-200  focus:z-10 focus:ring-2 focus:ring-purple-400">
+        <svg class="w-[16px] h-[16px] dark:text-white" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Cerr
+      </button>
+    
+      <button (click)="getChatStatus('P')"
+        class="chat-btn flex items-center gap-1 px-4 py-2 text-sm font-medium border border-gray-200 rounded-e-lg focus:z-10 focus:ring-2 focus:ring-purple-400">
+        <svg class="w-[16px] h-[16px] dark:text-white" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linejoin="round" stroke-width="1.5"
+            d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        Pend
       </button>
 
     </div>
@@ -72,20 +102,21 @@
         </div>
       </div>
     </form>
-
+    
     <section class="flex items-center justify-between w-5/6 mx-auto my-4">
-      <p class="text-gray-500">Cantidad de registros: 1</p>
+      <p class="text-gray-500">Cantidad de registros: {{chatData.length}}</p>
       
       <div class="flex gap-2">
 
-        <article class="w-8 h-8 border-2 border-purple-600 rounded-full flex items-center justify-center cursor-pointer">
-          <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" fill="none" viewBox="0 0 18 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 1v5h-5M2 19v-5h5m10-4a8 8 0 0 1-14.947 3.97M1 10a8 8 0 0 1 14.947-3.97"/>
+        <article class="w-8 h-8 border-2 border-purple-500 rounded-full flex items-center justify-center cursor-pointer">
+          <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
           </svg>
         </article>
-        <article class="w-8 h-8  border-2 border-purple-600 rounded-full flex items-center justify-center cursor-pointer">
-          <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" fill="none" viewBox="0 0 20 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m2.133 2.6 5.856 6.9L8 14l4 3 .011-7.5 5.856-6.9a1 1 0 0 0-.804-1.6H2.937a1 1 0 0 0-.804 1.6Z"/>
+        <article class="w-8 h-8  border-2 border-purple-500 rounded-full flex items-center justify-center cursor-pointer">
+          <svg  width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/>
           </svg>
         </article>
       </div>

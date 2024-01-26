@@ -1,0 +1,27 @@
+// .main-container {
+//     display: grid !important;  
+//     grid-template-columns: 1fr 1fr 1fr !important; 
+//     grid-template-rows: 0.5fr 2.3fr 0.2fr !important; 
+//     gap: 0px 0px; 
+//     grid-template-areas : 
+//       "nav nav nav " 
+//       "aside content content"
+//       "aside footer footer" !important; 
+//   }
+
+// .app-navigation {
+//     grid-area: 'nav' !important;
+// }
+
+// .app-sidebar { 
+//     grid-area: 'aside' !important;
+// }
+
+// .app-content {
+//     grid-area: 'main' !important;
+// }
+
+// .app-footer { 
+//     grid-area: 'footer' !important;
+// }
+
